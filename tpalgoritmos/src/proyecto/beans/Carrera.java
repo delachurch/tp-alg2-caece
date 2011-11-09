@@ -1,10 +1,9 @@
 package proyecto.beans;
 
-public class Subject {
+public class Carrera {
 
 	private Long id;
 	private String name;
-	private Boolean approved;
 	
 	public Long getId() {
 		return id;
@@ -17,11 +16,5 @@ public class Subject {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public Boolean getApproved() {
-		return approved;
-	}
-	public void setApproved(Boolean approved) {
-		this.approved = approved;
 	}	
 }

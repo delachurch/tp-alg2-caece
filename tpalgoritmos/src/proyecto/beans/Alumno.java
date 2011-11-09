@@ -1,6 +1,6 @@
 package proyecto.beans;
 
-public class Student {
+public class Alumno {
 
 	private Long id;
 	private String firstName;
