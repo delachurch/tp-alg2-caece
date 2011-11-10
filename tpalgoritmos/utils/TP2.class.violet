@@ -3,20 +3,11 @@
  <object class="com.horstmann.violet.ClassDiagramGraph"> 
   <void method="addNode"> 
    <object id="ClassNode0" class="com.horstmann.violet.ClassNode"> 
-    <void property="bounds"> 
-     <object class="java.awt.geom.Rectangle2D$Double"> 
-      <void method="setRect"> 
-       <double>110.0</double> 
-       <double>350.0</double> 
-       <double>100.0</double> 
-       <double>80.0</double> 
-      </void> 
-     </object> 
-    </void> 
     <void property="attributes"> 
      <void property="text"> 
       <string>Codigo
-Aprobada
+RegimenPromocion
+
 </string> 
      </void> 
     </void> 
@@ -28,60 +19,18 @@ Aprobada
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>110.0</double> 
-     <double>350.0</double> 
+     <double>38.0</double> 
+     <double>386.0</double> 
     </void> 
    </object> 
   </void> 
   <void method="addNode"> 
    <object id="ClassNode1" class="com.horstmann.violet.ClassNode"> 
-    <void property="bounds"> 
-     <object class="java.awt.geom.Rectangle2D$Double"> 
-      <void method="setRect"> 
-       <double>350.0</double> 
-       <double>140.0</double> 
-       <double>100.0</double> 
-       <double>100.0</double> 
-      </void> 
-     </object> 
-    </void> 
     <void property="attributes"> 
      <void property="text"> 
-      <string>Matricula
-Apellido
-Nombre
-</string> 
+      <string>Año
+Numero</string> 
      </void> 
-    </void> 
-    <void property="methods"> 
-     <void property="text"> 
-      <string>SolicitudTitulo()</string> 
-     </void> 
-    </void> 
-    <void property="name"> 
-     <void property="text"> 
-      <string>Alumno</string> 
-     </void> 
-    </void> 
-   </object> 
-   <object class="java.awt.geom.Point2D$Double"> 
-    <void method="setLocation"> 
-     <double>350.0</double> 
-     <double>140.0</double> 
-    </void> 
-   </object> 
-  </void> 
-  <void method="addNode"> 
-   <object id="ClassNode2" class="com.horstmann.violet.ClassNode"> 
-    <void property="bounds"> 
-     <object class="java.awt.geom.Rectangle2D$Double"> 
-      <void method="setRect"> 
-       <double>540.0</double> 
-       <double>110.0</double> 
-       <double>100.0</double> 
-       <double>60.0</double> 
-      </void> 
-     </object> 
     </void> 
     <void property="name"> 
      <void property="text"> 
@@ -91,23 +40,13 @@ Nombre
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>540.0</double> 
-     <double>110.0</double> 
+     <double>645.0</double> 
+     <double>188.0</double> 
     </void> 
    </object> 
   </void> 
   <void method="addNode"> 
-   <object id="ClassNode3" class="com.horstmann.violet.ClassNode"> 
-    <void property="bounds"> 
-     <object class="java.awt.geom.Rectangle2D$Double"> 
-      <void method="setRect"> 
-       <double>540.0</double> 
-       <double>0.0</double> 
-       <double>120.0</double> 
-       <double>80.0</double> 
-      </void> 
-     </object> 
-    </void> 
+   <object id="ClassNode2" class="com.horstmann.violet.ClassNode"> 
     <void property="attributes"> 
      <void property="text"> 
       <string>Actual</string> 
@@ -116,7 +55,9 @@ Nombre
     <void property="methods"> 
      <void property="text"> 
       <string>InicioCuatrimestre()
-FinCuatrimestre()</string> 
+FinCuatrimestre()
+InicioCursada()
+FinCursada()</string> 
      </void> 
     </void> 
     <void property="name"> 
@@ -127,22 +68,18 @@ FinCuatrimestre()</string>
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>540.0</double> 
-     <double>0.0</double> 
+     <double>633.0</double> 
+     <double>22.0</double> 
     </void> 
    </object> 
   </void> 
   <void method="addNode"> 
-   <object id="ClassNode4" class="com.horstmann.violet.ClassNode"> 
-    <void property="bounds"> 
-     <object class="java.awt.geom.Rectangle2D$Double"> 
-      <void method="setRect"> 
-       <double>540.0</double> 
-       <double>240.0</double> 
-       <double>100.0</double> 
-       <double>60.0</double> 
-      </void> 
-     </object> 
+   <object id="ClassNode3" class="com.horstmann.violet.ClassNode"> 
+    <void property="attributes"> 
+     <void property="text"> 
+      <string>Cuatrimestre
+Alumno</string> 
+     </void> 
     </void> 
     <void property="methods"> 
      <void property="text"> 
@@ -157,22 +94,17 @@ FinCuatrimestre()</string>
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>540.0</double> 
-     <double>240.0</double> 
+     <double>481.0</double> 
+     <double>189.0</double> 
     </void> 
    </object> 
   </void> 
   <void method="addNode"> 
-   <object id="ClassNode5" class="com.horstmann.violet.ClassNode"> 
-    <void property="bounds"> 
-     <object class="java.awt.geom.Rectangle2D$Double"> 
-      <void method="setRect"> 
-       <double>110.0</double> 
-       <double>130.0</double> 
-       <double>100.0</double> 
-       <double>60.0</double> 
-      </void> 
-     </object> 
+   <object id="ClassNode4" class="com.horstmann.violet.ClassNode"> 
+    <void property="attributes"> 
+     <void property="text"> 
+      <string>Nombre</string> 
+     </void> 
     </void> 
     <void property="name"> 
      <void property="text"> 
@@ -182,8 +114,104 @@ FinCuatrimestre()</string>
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>110.0</double> 
-     <double>130.0</double> 
+     <double>484.0</double> 
+     <double>399.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ClassNode5" class="com.horstmann.violet.ClassNode"> 
+    <void property="attributes"> 
+     <void property="text"> 
+      <string>Carrera
+Materia
+List &lt;Materia&gt;
+Aprobada
+Nota
+</string> 
+     </void> 
+    </void> 
+    <void property="methods"> 
+     <void property="text"> 
+      <string>traerCorrelativas()</string> 
+     </void> 
+    </void> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>MateriaCarrera</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>250.0</double> 
+     <double>366.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object class="com.horstmann.violet.ClassNode"> 
+    <void property="attributes"> 
+     <void property="text"> 
+      <string>List &lt;Alumno&gt;
+List &lt;Carrera&gt;
+List&lt;Materia&gt;
+</string> 
+     </void> 
+    </void> 
+    <void property="methods"> 
+     <void property="text"> 
+      <string>InscribirAlumno()
+Load()
+-InstanciarMateria()
+----InstanciarCorrelativa()
+-InstaciarAlumno()
+-InstanciarCarrera()
+
+</string> 
+     </void> 
+    </void> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>Universidad
+</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>0.0</double> 
+     <double>2.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ClassNode6" class="com.horstmann.violet.ClassNode"> 
+    <void property="attributes"> 
+     <void property="text"> 
+      <string>Matricula
+Apellido
+Nombre
+List&lt;MateriaCarrera&gt;
+</string> 
+     </void> 
+    </void> 
+    <void property="methods"> 
+     <void property="text"> 
+      <string>solicitudTitulo()
+obtenerMateriasAprobadas()</string> 
+     </void> 
+    </void> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>Alumno</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>217.0</double> 
+     <double>177.0</double> 
     </void> 
    </object> 
   </void> 
@@ -196,22 +224,37 @@ FinCuatrimestre()</string>
      <object class="com.horstmann.violet.ArrowHead" field="TRIANGLE"/> 
     </void> 
    </object> 
+   <object idref="ClassNode1"/> 
    <object idref="ClassNode2"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
+    <void property="bentStyle"> 
+     <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
+    </void> 
+    <void property="endLabel"> 
+     <string>1</string> 
+    </void> 
+    <void property="startLabel"> 
+     <string>1</string> 
+    </void> 
+   </object> 
+   <object idref="ClassNode1"/> 
    <object idref="ClassNode3"/> 
   </void> 
   <void method="connect"> 
    <object class="com.horstmann.violet.ClassRelationshipEdge"> 
     <void property="bentStyle"> 
-     <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
+     <object class="com.horstmann.violet.BentStyle" field="VH"/> 
     </void> 
     <void property="endLabel"> 
-     <string>*</string> 
+     <string>1</string> 
     </void> 
     <void property="startLabel"> 
-     <string>*</string> 
+     <string>1</string> 
     </void> 
    </object> 
-   <object idref="ClassNode1"/> 
+   <object idref="ClassNode4"/> 
    <object idref="ClassNode5"/> 
   </void> 
   <void method="connect"> 
@@ -220,14 +263,14 @@ FinCuatrimestre()</string>
      <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
     </void> 
     <void property="endLabel"> 
-     <string>*</string> 
+     <string>1</string> 
     </void> 
     <void property="startLabel"> 
-     <string>*</string> 
+     <string>1</string> 
     </void> 
    </object> 
-   <object idref="ClassNode5"/> 
    <object idref="ClassNode0"/> 
+   <object idref="ClassNode5"/> 
   </void> 
   <void method="connect"> 
    <object class="com.horstmann.violet.ClassRelationshipEdge"> 
@@ -241,8 +284,8 @@ FinCuatrimestre()</string>
      <string>1</string> 
     </void> 
    </object> 
-   <object idref="ClassNode1"/> 
-   <object idref="ClassNode4"/> 
+   <object idref="ClassNode6"/> 
+   <object idref="ClassNode5"/> 
   </void> 
   <void method="connect"> 
    <object class="com.horstmann.violet.ClassRelationshipEdge"> 
@@ -250,14 +293,14 @@ FinCuatrimestre()</string>
      <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
     </void> 
     <void property="endLabel"> 
-     <string>1</string> 
+     <string>*</string> 
     </void> 
     <void property="startLabel"> 
      <string>1</string> 
     </void> 
    </object> 
-   <object idref="ClassNode2"/> 
-   <object idref="ClassNode4"/> 
+   <object idref="ClassNode6"/> 
+   <object idref="ClassNode3"/> 
   </void> 
  </object> 
 </java> 
