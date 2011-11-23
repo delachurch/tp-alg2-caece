@@ -24,6 +24,6 @@ public class Alumno {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+	//modificacion dentro de una clase
 	
 }
