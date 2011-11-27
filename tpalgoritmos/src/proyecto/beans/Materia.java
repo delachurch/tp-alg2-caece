@@ -1,7 +1,8 @@
 package proyecto.beans;
+import java.util.ArrayList;
 
 public class Materia {
-
+  private ArrayList<Materia> correlativas; //usamos listas? hashMap no se
 	private Long id;
 	private String name;
 	private Boolean approved;
@@ -24,4 +25,12 @@ public class Materia {
 	public void setApproved(Boolean approved) {
 		this.approved = approved;
 	}	
+   
+  public ArrayList<Materia> getCorrelativas() {
+		return correlativas;
+	}
+
+	public void setCorrelativas(ArrayList<Materia> correlativas) {
+		this.correlativas = correlativas;
+	}	 
 }
