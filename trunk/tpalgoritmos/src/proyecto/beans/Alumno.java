@@ -1,29 +1,54 @@
 package proyecto.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Alumno {
 
-	private Long id;
-	private String firstName;
-	private String lastName;
+	private String matricula;
+	private String nombre;
+	private String apellido;
+	private List<HistoriaAcademica> ehistoriaacademica;
+
+	public String getMatricula() {
+		return matricula;
+	}
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getApellido() {
+		return apellido;
+	}
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+	public List<HistoriaAcademica> getEhistoriaacademica() {
+		return ehistoriaacademica;
+	}
+	public void setEhistoriaacademica(List<HistoriaAcademica> ehistoriaacademica) {
+		this.ehistoriaacademica = ehistoriaacademica;
+	}
 	
-	public Long getId() {
-		return id;
+	public Alumno(String matricula, String nombre, String apellido) {
+		super();
+		this.matricula = matricula;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.ehistoriaacademica = new ArrayList<HistoriaAcademica>();
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public Alumno() {
+		// TODO Auto-generated constructor stub
 	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	//modificacion dentro de una clase
 	
+	
+
+
+
+
 }
