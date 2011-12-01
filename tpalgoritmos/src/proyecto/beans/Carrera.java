@@ -1,20 +1,27 @@
 package proyecto.beans;
 
+
 public class Carrera {
 
-	private Long id;
-	private String name;
+	private String nombre;
+		
+
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	
-	public Long getId() {
-		return id;
+	
+	public Carrera(String nombre) {
+		super();
+		this.nombre = nombre;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
+	public Carrera() {
+		// TODO Auto-generated constructor stub
 	}	
+	
+
+
 }

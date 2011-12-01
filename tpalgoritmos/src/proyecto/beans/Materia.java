@@ -1,36 +1,37 @@
 package proyecto.beans;
-import java.util.ArrayList;
 
 public class Materia {
-  private ArrayList<Materia> correlativas; //usamos listas? hashMap no se
-	private Long id;
-	private String name;
-	private Boolean approved;
+  
+	private String nombre;
+	private Promocion promocion;
 	
-	public Long getId() {
-		return id;
+	public String getNombre() {
+		return nombre;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	public String getName() {
-		return name;
+	public Promocion getPromocion() {
+		return promocion;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setPromocion(Promocion promocion) {
+		this.promocion = promocion;
 	}
-	public Boolean getApproved() {
-		return approved;
+	
+	public Materia(String nombre, Promocion promocion) {
+		super();
+		this.nombre = nombre;
+		this.promocion = promocion;
 	}
-	public void setApproved(Boolean approved) {
-		this.approved = approved;
-	}	
-   
-  public ArrayList<Materia> getCorrelativas() {
-		return correlativas;
+	public Materia() {
+		// TODO Auto-generated constructor stub
+	}
+	public Materia(String nombre) {
+		super();
+		this.nombre = nombre;
 	}
 
-	public void setCorrelativas(ArrayList<Materia> correlativas) {
-		this.correlativas = correlativas;
-	}	 
+	
+
+	
 }
