@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 import proyecto.beans.*;
 
-
+//Clase UI
 public class UI {
 	
+	//Variables Privadas
 	private ConsoleReader reader;
 	private Universidad universidad;
 	
+	//Menu de Altas con sus respectivas opciones
 	public void MenuAltas() throws UniversidadException {
 				
 		ArrayList<String> res = new ArrayList<String>();
@@ -25,6 +27,7 @@ public class UI {
 		
 	}
 	
+	//Menu de Acciones con sus respectivas opciones
 	public void MennuAcciones() throws UniversidadException {
 		
 		ArrayList<String> res = new ArrayList<String>();
