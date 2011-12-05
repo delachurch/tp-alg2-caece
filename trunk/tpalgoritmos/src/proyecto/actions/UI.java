@@ -40,7 +40,7 @@ public class UI {
 		case "INICIOCURSADA"  : this.universidad.InicioCursada(); break;
 		case "FINCURSADA"  : this.universidad.FinCursada(); break;
 		case "SolicitudTitulo": this.universidad.SolicitudTitulo(this.universidad.getAlumnobyMatricula(res.get(1)),this.universidad.getCarrerabyName(res.get(2))); break;
-		case "ActaDeFinal": this.universidad.FinalActa(); break;
+		case "ActaDeFinal": this.universidad.IngresarActaFinal(res.get(1), res.get(2), Integer.parseInt(res.get(3))); break;
 		case "RegistrarAlumno" : this.universidad.RegistrarAlumno(this.universidad.getAlumnobyMatricula(res.get(1)), res); break;
 		default:  System.out.println("No es un OPCION VALIDA");
 		}
