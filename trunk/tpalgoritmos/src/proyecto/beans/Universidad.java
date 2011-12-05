@@ -75,11 +75,10 @@ public class Universidad {
 	
 	//Solicitar el Titulo de un Alumno perteneciente a una Carrera 
 	public boolean SolicitudTitulo(Alumno alumno, Carrera carrera){
-		//no me gusta
 		if (!this.cuatrimestre.isIsactual()){
 			boolean carreracompleta = true;
 			for (Alumno a: this.ealumno){
-				if (a == alumno){
+				if (a.getMatricula() == alumno.getMatricula()){
 					for (HistoriaAcademica ha : alumno.getEhistoriaacademica()){
 						if (!ha.isIsfinal()) {
 							carreracompleta = false;
@@ -100,14 +99,13 @@ public class Universidad {
 	//Registrar un Alumno en una lista de Carreras
 	public void RegistrarAlumno(Alumno alumno, List<String> escarrera){
 		List<Carrera> ecarrera = new ArrayList<Carrera>();
-		for (int i=3; i <= escarrera.size(); i++){
+		for (int i=2; i <= escarrera.size() - 1; i++){
 			Carrera cadd = new Carrera(escarrera.get(i));
 			ecarrera.add(cadd);
 		}
 		for (Carrera c : ecarrera) {
 			for(CarreraMateria cm : this.ecarreramateria){
-				Carrera auxc = cm.getCarrera();
-				if (auxc == c) {
+				if (cm.getCarrera().getNombre().equals(c.getNombre())) {
 					alumno.getEhistoriaacademica().add((HistoriaAcademica) cm);
 				}
 			}
@@ -117,37 +115,48 @@ public class Universidad {
 	
 	//Agregar una Carrera nueva
 	public void AgregarCarrera(String nombre){
+		//System.out.println("Se agregara una carrera " + nombre);
 		Carrera c = new Carrera(nombre);
-		this.ecarrera.add(c);		
+		this.ecarrera.add(c);
+		System.out.println("Se agrego una carrera");
+	}
+	
+	private void ArmarCorrelatividades (CarreraMateria cm, List<CarreraMateria> ecm, CarreraMateria corr){
+		for (CarreraMateria cmaux : ecm){
+			if (corr.getCarrera()==cmaux.getCarrera() && corr.getMateria()==cmaux.getMateria()){
+				cmaux.getCorrelativas().add(cm);
+			} else ArmarCorrelatividades(cm, cmaux.getCorrelativas(), corr);
+			
+		}
 	}
 	
 	//Agregar una Materia nueva a una Carrera Existente
-	public void AgregarMateria(String nombre, Promocion promocion, Carrera carrera){
-		Materia m = new Materia(nombre, promocion);
-		this.emateria.add(m);
-		CarreraMateria cm = new CarreraMateria(carrera, m);
-		this.ecarreramateria.add(cm);		
+	public void AgregarMateria(ArrayList<String> eparam) throws UniversidadException{
+		
+		Materia m = new Materia(eparam.get(1));
+		if (!this.emateria.contains(getMateriabyName(eparam.get(1)))) {
+			this.emateria.add(m);
+		}
+		
+		CarreraMateria cm = new CarreraMateria(this.getCarrerabyName(eparam.get(2)), m);
+		
+		if (eparam.size()==3){
+			if (!this.ecarreramateria.contains(getCarreraMateriabyCarreraMateria(eparam.get(2), eparam.get(1)))) {
+				this.ecarreramateria.add(cm);
+			}
+		}
+		else {
+			for (int i=3; i <= eparam.size() - 1; i++){
+				CarreraMateria cmcorr = new CarreraMateria(this.getCarrerabyName(eparam.get(2)), getMateriabyName(eparam.get(i)));
+				ArmarCorrelatividades(cm, this.ecarreramateria, cmcorr);
+			}
+		}	
 	}
 	
-	//Agregar una Materia nueva a una Carrera Existente con sus Materias Correlativa
-	public void AgregarMateria(String nombre, String carrera, ArrayList<String> ecorrelativapadre) throws UniversidadException{
-		Materia m = new Materia(nombre);
-		this.emateria.add(m);
-		
-		for (CarreraMateria cm : this.ecarreramateria){
-			Materia auxm = cm.getMateria();
-			for (int i=4; i <= ecorrelativapadre.size(); i++){
-				if (auxm == getMateriabyName(ecorrelativapadre.get(i))) {
-					CarreraMateria auxcm = new CarreraMateria(getCarrerabyName(carrera), m);
-					cm.getCorrelativas().add(auxcm);
-				}	
-			}
-		}		
-	}
 	
 	//Agregar un Alumno a la Universidad
-	public void AgregarAlumno(String matricula, String nombre, String apellido){
-		Alumno a = new Alumno(matricula, nombre, apellido);
+	public void AgregarAlumno(ArrayList<String> eparam){
+		Alumno a = new Alumno(eparam.get(1), eparam.get(2), eparam.get(3));
 		this.ealumno.add(a);
 	}
 	
@@ -159,7 +168,8 @@ public class Universidad {
 				aux = a;
 			}
 		}
-		return aux;
+		if (aux.getMatricula() == null) throw new UniversidadException("Alumno Inexistente"); 
+		else return aux;
 	}
 
 	//Obtener una Carrera a partir de su Nombre
@@ -170,18 +180,40 @@ public class Universidad {
 				aux = c;
 			}
 		}
-		return aux;
+		if (aux.getNombre() == null) throw new UniversidadException("Carrera Inexistente"); 
+		else return aux;
 	}
 	
 	//Obtener una Materia a partir de su Nombre
 	public Materia getMateriabyName(String name) throws UniversidadException{
-		Materia aux = new Materia();
+		Materia aux = new Materia(name);
 		for (Materia m : this.emateria){
-			if (m.getNombre().equals(name)) {
-				aux = m;
+			if (m.getNombre().equals(aux.getNombre())) {
+				return aux = m;
+			}
+		}
+		if (aux.getNombre() == null) throw new UniversidadException("Materia Inexistente"); 
+		else return aux;
+	}
+	
+	public CarreraMateria getCarreraMateriabyCarreraMateria(String carrera, String materia) throws UniversidadException{
+		CarreraMateria aux = new CarreraMateria(getCarrerabyName(carrera), getMateriabyName(materia));
+		for (CarreraMateria cm : this.ecarreramateria){
+			if (cm.getCarrera().equals(aux.getCarrera()) && cm.getMateria().equals(aux.getMateria())) {
+				return aux = cm;
 			}
 		}
 		return aux;
+	}
+
+	public Universidad(String nombre) {
+		super();
+		this.nombre = nombre;
+		this.ecarrera = new ArrayList<Carrera>();
+		this.emateria = new ArrayList<Materia>();
+		this.ecarreramateria = new ArrayList<CarreraMateria>();
+		this.ealumno = new ArrayList<Alumno>();
+		this.cuatrimestre = new Cuatrimestre();
 	}
 	
 	

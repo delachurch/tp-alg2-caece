@@ -34,11 +34,6 @@ public class Materia {
 		this.promocion = promocion;
 	}
 	
-	//Constructor Materia
-	public Materia() {
-		// TODO Auto-generated constructor stub
-	}
-	
 	//Constructor Materia (solo con su nombre)
 	public Materia(String nombre) {
 		super();
