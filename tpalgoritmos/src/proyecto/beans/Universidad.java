@@ -13,6 +13,7 @@ public class Universidad {
 	private List<CarreraMateria> ecarreramateria;
 	private List<Alumno> ealumno;
 	private Cuatrimestre cuatrimestre;
+	private List<List<ActaFinal>> eactafinal;
 
 	//Obtener el Nombre
 	public String getNombre() {
@@ -91,10 +92,37 @@ public class Universidad {
 		} else return false;
 	}
 	
-	public void FinalActa(){
-		
-		
+	public void AgregarActaFinal(List<ActaFinal> eactafinal){
+		this.eactafinal.add(eactafinal);
 	}
+
+    //Agregar una Materia nueva a una Carrera Existente
+    public void IngresarActaFinal(String materia, String carrera, int nota){
+    	List<ActaFinal> lstacta = new ArrayList<ActaFinal>();
+	    for(Alumno a : this.getEalumno()){
+	    	for(HistoriaAcademica ha : a.getEhistoriaacademica()){
+	    		if(ha.getCarrera().equals(carrera) && ha.getMateria().equals(materia) && ha.isIscursada()){
+	    			ActaFinal af = new ActaFinal(a, ha.getCarrera(), ha.getMateria() , nota);
+					lstacta.add(af);
+				}
+			}	
+		}
+		this.AgregarActaFinal(lstacta);	
+    }
+
+	
+    public void RegistrarNotas(String matricula, String materia, String carrera, boolean cursada, boolean fiNal){
+    	for (Alumno a : ealumno){
+    		if(a.getMatricula().equals(matricula)){
+    			for (HistoriaAcademica ha : a.getEhistoriaacademica()){
+    				if (ha.getMateria().getNombre().equals(materia) && ha.getCarrera().getNombre().equals(carrera)){
+    					ha.setIscursada(cursada);
+    					ha.setIsfinal(fiNal);
+    				}
+    			}	
+    		}
+    	}                
+    }
 	
 	//Registrar un Alumno en una lista de Carreras
 	public void RegistrarAlumno(Alumno alumno, List<String> escarrera){
@@ -104,18 +132,65 @@ public class Universidad {
 			ecarrera.add(cadd);
 		}
 		for (Carrera c : ecarrera) {
-			for(CarreraMateria cm : this.ecarreramateria){
-				if (cm.getCarrera().getNombre().equals(c.getNombre())) {
-					alumno.getEhistoriaacademica().add((HistoriaAcademica) cm);
-				}
+			RegistrarAlumnoCorr(alumno, c, this.ecarreramateria);
+		}
+	}
+	
+	public void RegistrarAlumnoCorr(Alumno alumno, Carrera carrera, List<CarreraMateria> ecm){
+		for(CarreraMateria cm : ecm){
+			if (cm.getCarrera().getNombre().equals(carrera.getNombre())) {
+				HistoriaAcademica ha = new HistoriaAcademica(cm.getCarrera(),cm.getMateria());
+				alumno.getEhistoriaacademica().add(ha); 
+				RegistrarAlumnoCorr(alumno, carrera, cm.getCorrelativas());
 			}
 		}
 	}
 	
+	public List<CarreraMateria> PreCorrelativas(Materia m, List<CarreraMateria> list){
+		List<CarreraMateria> ecm = new ArrayList<CarreraMateria>();
+		for (CarreraMateria cm :  list){
+			for (CarreraMateria corr : cm.getCorrelativas()){
+				if (corr.getMateria().getNombre().equals(m.getNombre())) ecm.add(cm);
+				else PreCorrelativas(m, corr.getCorrelativas()); 				
+			}
+		}
+		return ecm;
+	}
+	
+	public boolean InscribirAlumno(Alumno alumno, List<Materia> emateria){
+		for (Alumno a: this.ealumno){
+			if (a.getMatricula() == alumno.getMatricula()) {
+				 for (Materia m : emateria){
+					 
+					 for (CarreraMateria cm : this.ecarreramateria){
+						 if (cm.getMateria().getNombre().equals(m.getNombre())) {
+							 return true;
+						 }
+					 }
+		 
+					 List<CarreraMateria> eprecorr = new ArrayList<CarreraMateria>();
+					 PreCorrelativas(m, this.ecarreramateria);
+					 boolean inscripcion = true;
+					 for (Carrera c : this.ecarrera){
+						 for (CarreraMateria cm : eprecorr){
+							 if (c.getNombre().equals(cm.getCarrera().getNombre())){
+								 for (HistoriaAcademica ha : a.getEhistoriaacademica()){
+									 if (!ha.isIscursada()) {
+										 inscripcion = false;
+									 }
+								 }
+							 }
+						 }
+						 if (inscripcion) return inscripcion; 
+					 }
+				 }
+			}
+		}
+		return false;
+	}
 	
 	//Agregar una Carrera nueva
 	public void AgregarCarrera(String nombre){
-		//System.out.println("Se agregara una carrera " + nombre);
 		Carrera c = new Carrera(nombre);
 		this.ecarrera.add(c);
 		System.out.println("Se agrego una carrera");
