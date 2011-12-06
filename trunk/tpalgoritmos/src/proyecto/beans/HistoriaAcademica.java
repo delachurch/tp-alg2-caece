@@ -40,6 +40,14 @@ public class HistoriaAcademica {// extends CarreraMateria {
 		this.isinscripto = isinscripto;
 	}
 	
+	public void MarcarComoCursada(){
+		this.setIscursada(true);
+	}
+	
+	public void MarcarComoPromocionada(){
+		this.setIsfinal(true);
+	}
+	
 	//Constructor HistoriaAcademia (con informacion)
 	public HistoriaAcademica(CarreraMateria carreramateria) {
 		this.isinscripto = false;

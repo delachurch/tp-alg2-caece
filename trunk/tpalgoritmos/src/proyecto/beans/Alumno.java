@@ -57,6 +57,50 @@ public class Alumno {
 		// TODO Auto-generated constructor stub
 	}
 	
+	//Registra al Alumno en una lista de Carreras
+	//public void RegistrarAlumno(Universidad universidad, Alumno alumno, List<String> escarrera){
+	public void RegistrarAlumno(Universidad universidad, List<String> escarrera){
+		List<Carrera> ecarrera = new ArrayList<Carrera>();
+		for (int i=2; i <= escarrera.size() - 1; i++){
+			Carrera cadd = new Carrera(escarrera.get(i));
+			ecarrera.add(cadd);
+		}
+		for (Carrera c : ecarrera) {
+			//RegistrarAlumnoCorr(alumno, c, universidad.getEcarreramateria());
+			RegistrarAlumnoCorr(universidad, c);
+		}
+	}
+	
+	//public void RegistrarAlumnoCorr(Universidad universidad, Alumno alumno, Carrera carrera, List<CarreraMateria> ecm){
+	public void RegistrarAlumnoCorr(Universidad universidad, Carrera carrera){
+		for(CarreraMateria cm : universidad.getEcarreramateria()){
+			if (cm.getCarrera().getNombre().equals(carrera.getNombre())) {
+				HistoriaAcademica ha = new HistoriaAcademica(cm);
+				this.getEhistoriaacademica().add(ha); 
+				RegistrarAlumnoCorr(this, carrera, cm.getCorrelativas());
+			}
+		}
+	}
+	
+	//Solicitar el Titulo de un Alumno perteneciente a una Carrera 
+	public boolean SolicitudTitulo(Universidad universidad, Carrera carrera){
+		if (!universidad.getCuatrimestre().isIsactual()){
+			boolean carreracompleta = true;
+			for (Alumno a: universidad.getEalumno()){
+				if (a.getMatricula() == alumno.getMatricula()){
+					for (HistoriaAcademica ha : alumno.getEhistoriaacademica()){
+						if (!ha.isIsfinal()) {
+							carreracompleta = false;
+						}
+					}
+					
+				}
+			}
+			return carreracompleta;
+		} else return false;
+	}
+	
+		
 	//Constructor de Alumno (con informacion)
 	public Alumno(String matricula, String nombre, String apellido) {
 		super();
