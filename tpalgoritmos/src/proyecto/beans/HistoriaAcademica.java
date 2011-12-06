@@ -1,12 +1,14 @@
 package proyecto.beans;
 
 //Clase HistoriaAcademica
-public class HistoriaAcademica extends CarreraMateria {
+public class HistoriaAcademica {// extends CarreraMateria {
 
 	//Variables Privadas
 	private boolean isinscripto;
 	private boolean iscursada;
 	private boolean isfinal;
+	private int nota;
+	private CarreraMateria carreramateria;
 	
 	//Obtener si está Cursada
 	public boolean isIscursada() {
@@ -39,16 +41,27 @@ public class HistoriaAcademica extends CarreraMateria {
 	}
 	
 	//Constructor HistoriaAcademia (con informacion)
-	public HistoriaAcademica(Carrera carrera, Materia materia) {
-		super(carrera, materia);
+	public HistoriaAcademica(CarreraMateria carreramateria) {
 		this.isinscripto = false;
 		this.iscursada = false;
 		this.isfinal = false;
+		this.setCarreramateria(carreramateria);
 	}	
 	
-	//Constructor HistoriaAcademica
-	public void InscripcionMateria(){
-		
+	public CarreraMateria getCarreramateria() {
+		return carreramateria;
+	}
+
+	public void setCarreramateria(CarreraMateria carreramateria) {
+		this.carreramateria = carreramateria;
+	}
+
+	public int getNota() {
+		return nota;
+	}
+
+	public void setNota(int nota) {
+		this.nota = nota;
 	}
 }
 

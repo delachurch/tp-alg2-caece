@@ -23,15 +23,20 @@ public class Materia {
 	}
 	
 	//Asignar si está en Promocion
-	public void setPromocion(Promocion promocion) {
-		this.promocion = promocion;
+	public void setPromocion() {
+		this.promocion = new Promocion();
 	}
 	
 	//Constructor Materia (con valores)
-	public Materia(String nombre, Promocion promocion) {
+	public Materia(String nombre, String promocion) {
 		super();
 		this.nombre = nombre;
-		this.promocion = promocion;
+		switch (promocion) {
+		case "PAR" : this.promocion = new PromocionPar(); break;
+		case "IMPAR" : this.promocion = new PromocionImpar(); break;
+		case "NORMAL" : this.promocion = new PromocionNormal(); break;
+		default : this.promocion = new Promocion(); break;
+		}
 	}
 	
 	//Constructor Materia (solo con su nombre)
