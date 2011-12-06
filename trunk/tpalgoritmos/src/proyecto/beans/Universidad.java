@@ -14,6 +14,7 @@ public class Universidad {
 	private List<Alumno> ealumno;
 	private Cuatrimestre cuatrimestre;
 	private List<List<ActaFinal>> eactafinal;
+	private List<Promocion> ecriterios;
 
 	//Obtener el Nombre
 	public String getNombre() {
@@ -328,6 +329,20 @@ public class Universidad {
 		this.ecarreramateria = new ArrayList<CarreraMateria>();
 		this.ealumno = new ArrayList<Alumno>();
 		this.cuatrimestre = new Cuatrimestre();
+		List<Promocion> ecriteriospromocion = new ArrayList<Promocion>();
+		ecriteriospromocion.add(new Promocion());
+		ecriteriospromocion.add(new PromocionPar());
+		ecriteriospromocion.add(new PromocionImpar());
+		ecriteriospromocion.add(new PromocionNormal());
+		this.ecriterios = ecriteriospromocion;
+	}
+
+	public List<Promocion> getEcriterios() {
+		return ecriterios;
+	}
+
+	public void setEcriterios(List<Promocion> ecriterios) {
+		this.ecriterios = ecriterios;
 	}
 	
 	
