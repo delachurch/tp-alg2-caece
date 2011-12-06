@@ -22,14 +22,19 @@ public class UI {
 	public void MenuAltas(ArrayList<String> res) throws UniversidadException {
 					
 		switch (res.get(0)) {
-		case "CARRERA" : this.universidad.AgregarCarrera(res.get(1)); break;
-		case "MATERIA" : this.universidad.AgregarMateria(res); break;
-		case "ALUMNO"  : this.universidad.AgregarAlumno(res); break;
-		default:  {System.out.println("No es un OPCION VALIDA");}
-		} 
+			case "CARRERA" : this.universidad.AgregarCarrera(res.get(1)); break;
+			case "MATERIA" : this.universidad.AgregarMateria(res); break;
+			case "ALUMNO"  : this.universidad.AgregarAlumno(res); break;
+			default:  System.out.println("No es un OPCION VALIDA");
+		}
+	} 
 		
+		/*
+		 CARRERA NOMBRE
+		 MATERIA NOMBRE CARRERA CRITERIO MATERIACORRELATIVA MATERIACORRELATIVA...
+		 ALUMON  MATRICULA NOMBRE APELLIDO
+		 */
 		
-	}
 	
 	//Menu de Acciones con sus respectivas opciones
 	public void MenuAcciones(ArrayList<String> res) throws UniversidadException {
@@ -42,12 +47,28 @@ public class UI {
 		case "SolicitudTitulo": this.universidad.SolicitudTitulo(this.universidad.getAlumnobyMatricula(res.get(1)),this.universidad.getCarrerabyName(res.get(2))); break;
 		case "ActaDeFinal": this.universidad.IngresarActaFinal(res.get(1), res.get(2), Integer.parseInt(res.get(3))); break;
 		case "RegistrarAlumno" : this.universidad.RegistrarAlumno(this.universidad.getAlumnobyMatricula(res.get(1)), res); break;
+		case "RegistrarNota" : this.universidad.RegistrarNota(res.get(1), res.get(2),Integer.parseInt(res.get(3))); break;
 		default:  System.out.println("No es un OPCION VALIDA");
 		}
 	}
+	
+
+	/*
+	 SolicitudTitulo MATRICULAALUMNO CARRERA
+	 ActaDeFinal MATERIA CARRERA NOTA
+	 RegistrarAlumno MATRICULAALUMNO CARRERA CARRERA...
+	 RegistrarNota MATERIA NOTA
+	 
+	 
+	TODO:
+	1- Actualizar UML (NICO)
+	2- MOVER LOGICA DE UNIVERSIDAD AL RESTO (NICO)
+	3- Testear Metodos q no se probaron(Maxi)
+	4- Switchs ON/OFF segun incio/fin cuatrimestre/cursada (NICO)
+	 */
 
 
-
+	
 	
 	
 }
