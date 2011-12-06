@@ -27,6 +27,43 @@ public class Cuatrimestre {
 		this.iscursada = iscursada;
 	}
 	
+	
+	//Iniciar el Cuatrimestre
+	public void InicioCuatrimestre(){
+		if (!cuatrimestre.isIsactual()) cuatrimestre.setIsactual(true);
+		else System.out.println("ERROR - Cuatrimestre ya iniciado");
+	}
+	
+	//Finalizar el Cuatrimestre
+	public void FinCuatrimestre(){
+		if (cuatrimestre.isIsactual()) cuatrimestre.setIsactual(false);
+		else System.out.println("ERROR - Cuatrimestre ya finalizado");
+	}
+	
+	//Iniciar la Cursada
+	public void InicioCursada(){
+		if (!cuatrimestre.isIscursada()) cuatrimestre.setIscursada(true);
+		else System.out.println("ERROR - Cursada ya iniciada");
+	}
+	
+	//Finalizar la Cursada
+	public void FinCursada(){
+		if (cuatrimestre.isIscursada()) cuatrimestre.setIscursada(false);
+		else System.out.println("ERROR - Cursada ya terminado");
+	}
+	
+	//Funcion que determina si el Cuatrimestre está iniciado, en caso contrario muestra un mensaje de error
+    public boolean CuatrimestreIniciado(){
+    	if (!this.isIsactual()){ 
+    		System.out.println("ERROR - El cuatrimestre no está Iniciado!");
+			return false;
+		}
+    	else
+    	{ 
+    		return true; 
+		}
+    }
+	
 	//Constructor Cuatrimestre
 	public Cuatrimestre() {
 		super();

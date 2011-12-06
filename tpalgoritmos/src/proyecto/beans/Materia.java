@@ -27,6 +27,29 @@ public class Materia {
 		this.promocion = new Promocion();
 	}
 	
+	//Agregar una Materia nueva a una Carrera Existente
+	public void AgregarMateria(Universidad universidad, ArrayList<String> eparam) throws UniversidadException{
+		
+		//Materia m = new Materia(eparam.get(1), eparam.get(3));
+		if (!universidad.getEmateria().contains(universidad.getMateriabyName(eparam.get(1)))) {
+			universidad.getEmateria().add(this);
+		}
+		
+		CarreraMateria cm = new CarreraMateria(this.getCarrerabyName(eparam.get(2)),this);
+		
+		if (eparam.size()==4){
+			if (!universidad.getEcarreramateria().contains(universidad.getCarreraMateriabyCarreraMateria(eparam.get(2), eparam.get(1)))) {
+				universidad.getEcarreramateria().add(cm);
+			}
+		}
+		else {
+			for (int i=4; i <= eparam.size() - 1; i++){
+				CarreraMateria cmcorr = new CarreraMateria(universidad.getCarrerabyName(eparam.get(2)), universidad.getMateriabyName(eparam.get(i)));
+				ArmarCorrelatividades(cm, universidad.getEcarreramateria(), cmcorr);
+			}
+		}	
+	}
+	
 	//Constructor Materia (con valores)
 	public Materia(String nombre, String promocion) {
 		super();

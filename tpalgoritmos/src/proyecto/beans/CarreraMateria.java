@@ -41,6 +41,7 @@ public class CarreraMateria {
 	public void setCorrelativas(List<CarreraMateria> correlativas) {
 		this.correlativas = correlativas;
 	}
+	
 
 	//Constructor CarreraMateria
 	public CarreraMateria(Carrera carrera, Materia materia) {
