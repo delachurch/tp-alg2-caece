@@ -67,17 +67,17 @@ public class Alumno {
 		}
 		for (Carrera c : ecarrera) {
 			//RegistrarAlumnoCorr(alumno, c, universidad.getEcarreramateria());
-			RegistrarAlumnoCorr(universidad, c);
+			RegistrarAlumnoCorr(c, universidad.getEcarreramateria());
 		}
 	}
 	
 	//public void RegistrarAlumnoCorr(Universidad universidad, Alumno alumno, Carrera carrera, List<CarreraMateria> ecm){
-	public void RegistrarAlumnoCorr(Universidad universidad, Carrera carrera){
-		for(CarreraMateria cm : universidad.getEcarreramateria()){
+	public void RegistrarAlumnoCorr(Carrera carrera, List<CarreraMateria> ecarreramateria){
+		for(CarreraMateria cm : ecarreramateria){
 			if (cm.getCarrera().getNombre().equals(carrera.getNombre())) {
 				HistoriaAcademica ha = new HistoriaAcademica(cm);
 				this.getEhistoriaacademica().add(ha); 
-				RegistrarAlumnoCorr(this, carrera, cm.getCorrelativas());
+				RegistrarAlumnoCorr(carrera, cm.getCorrelativas());
 			}
 		}
 	}
@@ -87,8 +87,8 @@ public class Alumno {
 		if (!universidad.getCuatrimestre().isIsactual()){
 			boolean carreracompleta = true;
 			for (Alumno a: universidad.getEalumno()){
-				if (a.getMatricula() == alumno.getMatricula()){
-					for (HistoriaAcademica ha : alumno.getEhistoriaacademica()){
+				if (a.getMatricula() == this.getMatricula()){
+					for (HistoriaAcademica ha : this.getEhistoriaacademica()){
 						if (!ha.isIsfinal()) {
 							carreracompleta = false;
 						}

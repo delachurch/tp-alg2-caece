@@ -30,25 +30,25 @@ public class Cuatrimestre {
 	
 	//Iniciar el Cuatrimestre
 	public void InicioCuatrimestre(){
-		if (!cuatrimestre.isIsactual()) cuatrimestre.setIsactual(true);
+		if (!this.isIsactual()) this.setIsactual(true);
 		else System.out.println("ERROR - Cuatrimestre ya iniciado");
 	}
 	
 	//Finalizar el Cuatrimestre
 	public void FinCuatrimestre(){
-		if (cuatrimestre.isIsactual()) cuatrimestre.setIsactual(false);
+		if (this.isIsactual()) this.setIsactual(false);
 		else System.out.println("ERROR - Cuatrimestre ya finalizado");
 	}
 	
 	//Iniciar la Cursada
 	public void InicioCursada(){
-		if (!cuatrimestre.isIscursada()) cuatrimestre.setIscursada(true);
+		if (!this.isIscursada()) this.setIscursada(true);
 		else System.out.println("ERROR - Cursada ya iniciada");
 	}
 	
 	//Finalizar la Cursada
 	public void FinCursada(){
-		if (cuatrimestre.isIscursada()) cuatrimestre.setIscursada(false);
+		if (this.isIscursada()) this.setIscursada(false);
 		else System.out.println("ERROR - Cursada ya terminado");
 	}
 	

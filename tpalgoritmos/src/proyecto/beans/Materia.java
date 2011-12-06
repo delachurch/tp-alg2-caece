@@ -1,5 +1,8 @@
 package proyecto.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //Clase Materia
 public class Materia {
   
@@ -35,7 +38,7 @@ public class Materia {
 			universidad.getEmateria().add(this);
 		}
 		
-		CarreraMateria cm = new CarreraMateria(this.getCarrerabyName(eparam.get(2)),this);
+		CarreraMateria cm = new CarreraMateria(universidad.getCarrerabyName(eparam.get(2)),this);
 		
 		if (eparam.size()==4){
 			if (!universidad.getEcarreramateria().contains(universidad.getCarreraMateriabyCarreraMateria(eparam.get(2), eparam.get(1)))) {
@@ -48,6 +51,15 @@ public class Materia {
 				ArmarCorrelatividades(cm, universidad.getEcarreramateria(), cmcorr);
 			}
 		}	
+	}
+	
+	private void ArmarCorrelatividades (CarreraMateria cm, List<CarreraMateria> ecm, CarreraMateria corr){
+		for (CarreraMateria cmaux : ecm){
+			if (corr.getCarrera()==cmaux.getCarrera() && corr.getMateria()==cmaux.getMateria()){
+				cmaux.getCorrelativas().add(cm);
+			} else ArmarCorrelatividades(cm, cmaux.getCorrelativas(), corr);
+			
+		}
 	}
 	
 	//Constructor Materia (con valores)

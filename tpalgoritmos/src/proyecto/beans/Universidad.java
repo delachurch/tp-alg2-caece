@@ -26,7 +26,7 @@ public class Universidad {
 	}
 	
 	//Obtener la Lista de Carreras
-	public ListArray<Carrera> getEcarrera(){
+	public List<Carrera> getEcarrera(){
 		return ecarrera;
 	}
 	
@@ -36,7 +36,7 @@ public class Universidad {
 	}
 	
 	//Obtener la Lista de CarreraMateria
-	public List<CarreraMeteria> getEcarreramateria(){
+	public List<CarreraMateria> getEcarreramateria(){
 		return ecarreramateria;
 	}
 	
@@ -98,7 +98,7 @@ public class Universidad {
 	
 	//Solicitar el Titulo de un Alumno perteneciente a una Carrera 
 	public boolean SolicitudTitulo(Alumno alumno, Carrera carrera){
-		alumno.SolicitudTitulo(this,carrera);
+		return alumno.SolicitudTitulo(this,carrera);
 		
 		//La lógica de SolicitudTitulo se movió a la clase Alumno
 		/*if (!this.cuatrimestre.isIsactual()){
@@ -238,15 +238,6 @@ public class Universidad {
 		//System.out.println("Se agrego una carrera");
 	}
 	
-	
-	private void ArmarCorrelatividades (CarreraMateria cm, List<CarreraMateria> ecm, CarreraMateria corr){
-		for (CarreraMateria cmaux : ecm){
-			if (corr.getCarrera()==cmaux.getCarrera() && corr.getMateria()==cmaux.getMateria()){
-				cmaux.getCorrelativas().add(cm);
-			} else ArmarCorrelatividades(cm, cmaux.getCorrelativas(), corr);
-			
-		}
-	}
 	
 	//Agregar una Materia nueva a una Carrera Existente
 	public void AgregarMateria(ArrayList<String> eparam) throws UniversidadException{
