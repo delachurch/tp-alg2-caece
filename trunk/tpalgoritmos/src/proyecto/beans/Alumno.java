@@ -110,7 +110,12 @@ public class Alumno {
 		this.ehistoriaacademica = new ArrayList<HistoriaAcademica>();
 	}
 	
-	
+	public void MarcarInscripcionMateria (Materia materia){
+		for (HistoriaAcademica ha : this.getEhistoriaacademica())
+			if (materia.getNombre().equals(ha.getCarreramateria().getCarrera().getNombre())){
+				ha.setIsinscripto(true);
+			}
+	}
 	
 	
 

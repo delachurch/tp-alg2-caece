@@ -30,9 +30,11 @@ public class UI {
 	} 
 		
 		/*
+		 * Como Utilizar el Menu...
+		 * 
 		 CARRERA NOMBRE
 		 MATERIA NOMBRE CARRERA CRITERIO MATERIACORRELATIVA MATERIACORRELATIVA...
-		 ALUMON  MATRICULA NOMBRE APELLIDO
+		 ALUMNO  MATRICULA NOMBRE APELLIDO
 		 */
 		
 	
@@ -49,6 +51,7 @@ public class UI {
 				case "ActaDeFinal": this.universidad.IngresarActaFinal(res.get(1), res.get(2), Integer.parseInt(res.get(3))); break;
 				case "RegistrarAlumno" : this.universidad.RegistrarAlumno(this.universidad.getAlumnobyMatricula(res.get(1)), res); break;
 				case "RegistrarNota" : this.universidad.RegistrarNota(res.get(1), res.get(2),Integer.parseInt(res.get(3))); break;
+				case "InscribirAlumno" : this.universidad.InscribirAlumno(this.universidad.getAlumnobyMatricula(res.get(1)), res); break;
 				default:  System.out.println("No es un OPCION VALIDA");
 			}
 		}
@@ -64,17 +67,14 @@ public class UI {
 	
 
 	/*
+	 * Como utilizar el menu...
+	 * 
 	 SolicitudTitulo MATRICULAALUMNO CARRERA
 	 ActaDeFinal MATERIA CARRERA NOTA
 	 RegistrarAlumno MATRICULAALUMNO CARRERA CARRERA...
 	 RegistrarNota MATERIA NOTA
+	 InscribirAlumno MATRICULAALUMNO MATERIA MATERIA ....
 	 
-	 
-	TODO:
-	1- Actualizar UML (NICO) ésto lo hago mañana en el laburo que estoy al pedo
-	2- MOVER LOGICA DE UNIVERSIDAD AL RESTO (NICO) OK - los métodos están migrados y deje comentado el código por las dudas
-	3- Testear Metodos q no se probaron(Maxi)
-	4- Switchs ON/OFF segun incio/fin cuatrimestre/cursada (NICO) OK - no comments
 	 */
 
 
