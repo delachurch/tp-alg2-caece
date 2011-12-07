@@ -72,50 +72,26 @@ public class Universidad {
 	//Iniciar el Cuatrimestre
 	public void InicioCuatrimestre(){
 		this.cuatrimestre.InicioCuatrimestre();
-		//if (!cuatrimestre.isIsactual()) cuatrimestre.setIsactual(true);
-		//else System.out.println("ERROR - Cuatrimestre ya iniciado");
 	}
 	
 	//Finalizar el Cuatrimestre
 	public void FinCuatrimestre(){
 		this.cuatrimestre.FinCuatrimestre();
-		//if (cuatrimestre.isIsactual()) cuatrimestre.setIsactual(false);
-		//else System.out.println("ERROR - Cuatrimestre ya finalizado");
 	}
 	
 	//Iniciar la Cursada
 	public void InicioCursada(){
 		this.cuatrimestre.InicioCursada();
-		//if (!cuatrimestre.isIscursada()) cuatrimestre.setIscursada(true);
-		//else System.out.println("ERROR - Cursada ya iniciada");
 	}
 	
 	//Finalizar la Cursada
 	public void FinCursada(){
 		this.cuatrimestre.FinCursada();
-		//if (cuatrimestre.isIscursada()) cuatrimestre.setIscursada(false);
-		//else System.out.println("ERROR - Cursada ya terminado");
 	}
 	
 	//Solicitar el Titulo de un Alumno perteneciente a una Carrera 
 	public boolean SolicitudTitulo(Alumno alumno, Carrera carrera){
 		return alumno.SolicitudTitulo(this,carrera);
-		
-		//La lógica de SolicitudTitulo se movió a la clase Alumno
-		/*if (!this.cuatrimestre.isIsactual()){
-			boolean carreracompleta = true;
-			for (Alumno a: this.ealumno){
-				if (a.getMatricula() == alumno.getMatricula()){
-					for (HistoriaAcademica ha : alumno.getEhistoriaacademica()){
-						if (!ha.isIsfinal()) {
-							carreracompleta = false;
-						}
-					}
-					
-				}
-			}
-			return carreracompleta;
-		} else return false;*/
 	}
 	
 	//Agregar un Listado de Actas de final 
@@ -139,19 +115,18 @@ public class Universidad {
 
 	
     //Registrar una Nota de una Materia a un Alumno
-    public void RegistrarNota(String matricula, String materia, int nota){
+    public void RegistrarNota(String matricula, String materia, int nota) throws UniversidadException{
     	for (Alumno a : ealumno){
     		if(a.getMatricula().equals(matricula)){
     			for (HistoriaAcademica ha : a.getEhistoriaacademica()){
     						
-    				if (ha.getCarreramateria().getMateria().getNombre().equals(materia)){
-    					
-    					//ha.setIscursada(true);
-    					ha.MarcarComoCursada();
-    					
-    					//ha.setIsfinal(ha.getCarreramateria().getMateria().getPromocion().Promocionable(ha.getCarreramateria().getMateria(), nota));
-    					//Si la Nota cumple con el Criterio de Promocion...
-    					if (ha.getCarreramateria().getMateria().getPromocion().Promocionable(ha.getCarreramateria().getMateria(), nota)) ha.MarcarComoPromocionada();
+    				if (ha.getCarreramateria().getMateria().getNombre().equals(materia)) {
+    					if (ha.isIsinscripto()){
+    						ha.MarcarComoCursada();
+    						//Si la Nota cumple con el Criterio de Promocion...
+    						if (ha.getCarreramateria().getMateria().getPromocion().Promocionable(ha.getCarreramateria().getMateria(), nota)) ha.MarcarComoPromocionada();
+    					}
+    					else throw new UniversidadException("Alumno no inscripto a dicha Materia");
     				}
     			}	
     		}
@@ -161,31 +136,9 @@ public class Universidad {
    
 	//Registrar un Alumno en una lista de Carreras
 	public void RegistrarAlumno(Alumno alumno, List<String> escarrera){
-		
-		//La lógica de RegistrarAlumno se pasó a la clase Alumno
 		alumno.RegistrarAlumno(this, escarrera);
-		
-		/*List<Carrera> ecarrera = new ArrayList<Carrera>();
-		for (int i=2; i <= escarrera.size() - 1; i++){
-			Carrera cadd = new Carrera(escarrera.get(i));
-			ecarrera.add(cadd);
-		}
-		for (Carrera c : ecarrera) {
-			RegistrarAlumnoCorr(alumno, c, this.ecarreramateria);
-		}*/
 	}
-	
-	//El Método RegistrarAlumnoCorr se pasó a la clase Alumno
-	/*public void RegistrarAlumnoCorr(Alumno alumno, Carrera carrera, List<CarreraMateria> ecm){
-		for(CarreraMateria cm : ecm){
-			if (cm.getCarrera().getNombre().equals(carrera.getNombre())) {
-				HistoriaAcademica ha = new HistoriaAcademica(cm);
-				alumno.getEhistoriaacademica().add(ha); 
-				RegistrarAlumnoCorr(alumno, carrera, cm.getCorrelativas());
-			}
-		}
-	}*/
-	
+		
 	public List<CarreraMateria> PreCorrelativas(Materia m, List<CarreraMateria> list){
 		List<CarreraMateria> ecm = new ArrayList<CarreraMateria>();
 		for (CarreraMateria cm :  list){
@@ -196,17 +149,23 @@ public class Universidad {
 		}
 		return ecm;
 	}
-	
-	
+
 	//Inscribe un Alumno existente en una Lista de Materias
-	public boolean InscribirAlumno(Alumno alumno, List<Materia> emateria){
+	public void InscribirAlumno(Alumno alumno, List<String> esmateria) throws UniversidadException{
+		
+		List<Materia> emateria = new ArrayList<Materia>();
+		
+		for (String smateria : esmateria){
+			emateria.add(this.getMateriabyName(smateria));
+		}
+		
 		for (Alumno a: this.getEalumno()){
 			if (a.getMatricula() == alumno.getMatricula()) {
 				 for (Materia m : emateria){
 					 
 					 for (CarreraMateria cm : this.getEcarreramateria()){
 						 if (cm.getMateria().getNombre().equals(m.getNombre())) {
-							 return true;
+							 a.MarcarInscripcionMateria(m);
 						 }
 					 }
 		 
@@ -223,47 +182,24 @@ public class Universidad {
 								 }
 							 }
 						 }
-						 if (inscripcion) return inscripcion; 
+						 if (inscripcion)  a.MarcarInscripcionMateria(m); 
 					 }
 				 }
 			}
 		}
-		return false;
 	}
 	
 	//Agregar una Carrera nueva
 	public void AgregarCarrera(String nombre){
 		Carrera c = new Carrera(nombre);
 		this.ecarrera.add(c);
-		//Saqué el mensaje que te hinchaba las bolas :)
-		//System.out.println("Se agrego una carrera");
 	}
 	
 	
 	//Agregar una Materia nueva a una Carrera Existente
 	public void AgregarMateria(ArrayList<String> eparam) throws UniversidadException{
-		
 		Materia m = new Materia(eparam.get(1), eparam.get(3));
 		m.AgregarMateria(this, eparam);
-		
-		//La lógica de AgregarMateria se pasó a la clase Materia
-		/*if (!this.emateria.contains(getMateriabyName(eparam.get(1)))) {
-			this.emateria.add(m);
-		}
-		
-		CarreraMateria cm = new CarreraMateria(this.getCarrerabyName(eparam.get(2)), m);
-		
-		if (eparam.size()==4){
-			if (!this.ecarreramateria.contains(getCarreraMateriabyCarreraMateria(eparam.get(2), eparam.get(1)))) {
-				this.ecarreramateria.add(cm);
-			}
-		}
-		else {
-			for (int i=4; i <= eparam.size() - 1; i++){
-				CarreraMateria cmcorr = new CarreraMateria(this.getCarrerabyName(eparam.get(2)), getMateriabyName(eparam.get(i)));
-				ArmarCorrelatividades(cm, this.ecarreramateria, cmcorr);
-			}
-		}*/	
 	}
 	
 	

@@ -33,7 +33,6 @@ public class Materia {
 	//Agregar una Materia nueva a una Carrera Existente
 	public void AgregarMateria(Universidad universidad, ArrayList<String> eparam) throws UniversidadException{
 		
-		//Materia m = new Materia(eparam.get(1), eparam.get(3));
 		if (!universidad.getEmateria().contains(universidad.getMateriabyName(eparam.get(1)))) {
 			universidad.getEmateria().add(this);
 		}

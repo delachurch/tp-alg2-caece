@@ -40,7 +40,8 @@ public class MainAction {
 				break;
 			}
 			case "ACCION" : {
-				System.out.println("Ingrese opcion: INICIOCUATRIMESTRE - FINCUATRIMESTRE - INICIOCURSADA - FINCURSADA - SolicitudTitulo - ActaDeFinal - RegistrarAlumno");
+				System.out.println("Ingrese opcion: INICIOCUATRIMESTRE - FINCUATRIMESTRE - INICIOCURSADA - FINCURSADA");
+				System.out.println("				SolicitudTitulo - ActaDeFinal - RegistrarAlumno - RegistrarAlumno - RegistrarNota - InscribirAlumno");
 				myUI.MenuAcciones(MyReader.getInput());
 				break;
 			}
@@ -49,14 +50,6 @@ public class MainAction {
 			
 		}
 		
-		
-		
-		
-	    //BufferedReader ingreso;
-        //ingreso = new BufferedReader(new InputStreamReader(System.in));
-		
-		//UI MyUI = new UI();
-		//MyUI.MenuAltas();
 
 	}
 
