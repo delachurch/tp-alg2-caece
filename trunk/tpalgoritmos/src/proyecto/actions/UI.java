@@ -21,13 +21,18 @@ public class UI implements Subscripto{
 
 	//Menu de Altas con sus respectivas opciones
 	public void MenuAltas(ArrayList<String> res) throws UniversidadException {
-					
-		switch (res.get(0)) {
+		 
+    if (res.get(0).equals("CARRERA")) this.universidad.AgregarCarrera(res.get(1));
+    else if (res.get(0).equals("MATERIA")) this.universidad.AgregarMateria(res);
+    else if (res.get(0).equals("ALUMNO")) this.universidad.AgregarAlumno(res);
+    else System.out.println("No es un OPCION VALIDA");
+		
+      /*switch (res.get(0)) {
 			case "CARRERA" : this.universidad.AgregarCarrera(res.get(1)); break;
 			case "MATERIA" : this.universidad.AgregarMateria(res); break;
 			case "ALUMNO"  : this.universidad.AgregarAlumno(res); break;
 			default:  System.out.println("No es un OPCION VALIDA");
-		}
+		}*/
 	} 
 		
 		/*
@@ -41,10 +46,20 @@ public class UI implements Subscripto{
 	
 	//Menu de Acciones con sus respectivas opciones
 	public void MenuAcciones(ArrayList<String> res) throws UniversidadException {
-		//En caso de que el Cuatrimestre estÈ iniciado se permitir· realizar otras opciones
+		//En caso de que el Cuatrimestre est√© iniciado se permitir√° realizar otras opciones
 		if (this.universidad.getCuatrimestre().CuatrimestreIniciado())
 		{
-			switch (res.get(0)) {
+      if (res.get(0).equals("FINCUATRIMESTRE")) this.universidad.FinCuatrimestre();
+      else if (res.get(0).equals("INICIOCURSADA")) this.universidad.InicioCursada();
+      else if (res.get(0).equals("FINCURSADA")) this.universidad.FinCursada();
+      else if (res.get(0).equals("SolicitudTitulo")) this.universidad.SolicitudTitulo(this.universidad.getAlumnobyMatricula(res.get(1)),this.universidad.getCarrerabyName(res.get(2)));     
+      else if (res.get(0).equals("ActaDeFinal")) this.universidad.IngresarActaFinal(res.get(1), res.get(2), Integer.parseInt(res.get(3)));
+      else if (res.get(0).equals("RegistrarAlumno")) this.universidad.RegistrarAlumno(this.universidad.getAlumnobyMatricula(res.get(1)), res);
+      else if (res.get(0).equals("RegistrarNota")) this.universidad.RegistrarNota(res.get(1), res.get(2),Integer.parseInt(res.get(3)));
+      else if (res.get(0).equals("InscribirAlumno")) this.universidad.InscribirAlumno(this.universidad.getAlumnobyMatricula(res.get(1)), res);
+      else System.out.println("No es un OPCION VALIDA");
+      
+			/*switch (res.get(0)) {
 				case "FINCUATRIMESTRE" : this.universidad.FinCuatrimestre(); break;
 				case "INICIOCURSADA"  : this.universidad.InicioCursada(); break;
 				case "FINCURSADA"  : this.universidad.FinCursada(); break;
@@ -54,14 +69,17 @@ public class UI implements Subscripto{
 				case "RegistrarNota" : this.universidad.RegistrarNota(res.get(1), res.get(2),Integer.parseInt(res.get(3))); break;
 				case "InscribirAlumno" : this.universidad.InscribirAlumno(this.universidad.getAlumnobyMatricula(res.get(1)), res); break;
 				default:  System.out.println("No es un OPCION VALIDA");
-			}
+			}*/
 		}
 		else
 		{
-			//En caso de que el Cuatrimestre no haya iniciado, solo se permitir· inicarlo
-			switch (res.get(0)) {
+			//En caso de que el Cuatrimestre no haya iniciado, solo se permitir√° inicarlo
+      if (res.get(0).equals("INICIOCUATRIMESTRE")) this.universidad.InicioCuatrimestre();
+      else System.out.println("No es un OPCION VALIDA");    
+			
+         /*switch (res.get(0)) {
 				case "INICIOCUATRIMESTRE" : this.universidad.InicioCuatrimestre(); break;
-				default:  System.out.println("No es un OPCION VALIDA");
+				default:  System.out.println("No es un OPCION VALIDA");*/
 			}
 		}
 	}
