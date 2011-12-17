@@ -15,6 +15,7 @@ public class Universidad {
 	private Cuatrimestre cuatrimestre;
 	private List<List<ActaFinal>> eactafinal;
 	private List<Promocion> ecriterios;
+	private Subscripto subscripto;
 
 	//Obtener el Nombre
 	public String getNombre() {
@@ -124,7 +125,7 @@ public class Universidad {
     					if (ha.isIsinscripto()){
     						ha.MarcarComoCursada();
     						//Si la Nota cumple con el Criterio de Promocion...
-    						if (ha.getCarreramateria().getMateria().getPromocion().Promocionable(ha.getCarreramateria().getMateria(), nota)) ha.MarcarComoPromocionada();
+    						if (ha.getCarreramateria().getMateria().getPromocion().Promocionable(nota)) ha.MarcarComoPromocionada();
     					}
     					else throw new UniversidadException("Alumno no inscripto a dicha Materia");
     				}
@@ -193,9 +194,22 @@ public class Universidad {
 	public void AgregarCarrera(String nombre){
 		Carrera c = new Carrera(nombre);
 		this.ecarrera.add(c);
+		NotificarCarreraNueva(c);
 	}
 	
 	
+	private void NotificarCarreraNueva(Carrera c) {
+		if (this.subscripto != null) {
+			this.subscripto.onCarreraNueva(c);
+		}
+		
+	}
+	
+	
+	public void setSubscripto(Subscripto s){
+		this.subscripto = s;
+	}
+
 	//Agregar una Materia nueva a una Carrera Existente
 	public void AgregarMateria(ArrayList<String> eparam) throws UniversidadException{
 		Materia m = new Materia(eparam.get(1), eparam.get(3));

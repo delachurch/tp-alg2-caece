@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import proyecto.beans.*;
 
 //Clase UI
-public class UI {
+public class UI implements Subscripto{
 	
 	//Variables Privadas
 	private Universidad universidad;
@@ -14,6 +14,7 @@ public class UI {
 	public UI(String uninombre){
 		super();
 		this.universidad =  new Universidad(uninombre);
+		this.universidad.setSubscripto(this);
 		
 	};
 	
@@ -64,6 +65,12 @@ public class UI {
 			}
 		}
 	}
+
+
+		@Override
+		public void onCarreraNueva(Carrera c) {
+			System.out.println(c.getNombre());			
+		}
 	
 
 	/*
