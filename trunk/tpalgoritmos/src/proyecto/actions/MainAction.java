@@ -2,7 +2,7 @@ package proyecto.actions;
 
 
 
-import java.util.ArrayList;
+
 
 import proyecto.beans.UniversidadException;
 
@@ -23,8 +23,8 @@ public class MainAction {
 		
 		System.out.println(res);*/
 		
-		UI myUI = new UI(res.toString());
-     myUI.EjecutarUI();
+		UI myUI = new UI();
+		myUI.EjecutarUI();
 		
 		
 		
