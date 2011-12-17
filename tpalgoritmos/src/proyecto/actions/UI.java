@@ -87,22 +87,29 @@ public class UI implements Subscripto{
 		{
 			//En caso de que el Cuatrimestre no haya iniciado, solo se permitirá inicarlo
       if (res.get(0).equals("INICIOCUATRIMESTRE")) this.universidad.InicioCuatrimestre();
-      else System.out.println("No es un OPCION VALIDA");    
-			
-         /*switch (res.get(0)) {
-				case "INICIOCUATRIMESTRE" : this.universidad.InicioCuatrimestre(); break;
-				default:  System.out.println("No es un OPCION VALIDA");*/
-			}
+      else System.out.println("No es un OPCION VALIDA"); 
+		}
+
 	}
 
 
 
 		@Override
 		public void onCarreraNueva(Carrera c) {
-			System.out.println(c.getNombre());			
+			System.out.println("Carrera Agregada : " + c.getNombre());			
+		}
+
+		@Override
+		public void onAlumnoNuevo(Alumno a) {
+			System.out.println("Alumno Agregado " + a.getMatricula());
+			
 		}
 	
-
+		@Override
+		public void onMateriaNueva(Materia m) {
+			System.out.println("Materia Agregada " + m.getNombre());
+			
+		}
 	/*
 	 * Como utilizar el menu...
 	 * 

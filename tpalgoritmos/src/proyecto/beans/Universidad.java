@@ -205,6 +205,18 @@ public class Universidad {
 		
 	}
 	
+	private void NotificarAlumnoNuevo(Alumno a){
+		if (this.subscripto != null) {
+			this.subscripto.onAlumnoNuevo(a);
+		}
+	}
+	
+	private void NotificarMateriaNueva(Materia m){
+		if (this.subscripto != null) {
+			this.subscripto.onMateriaNueva(m);
+		}
+	}
+
 	
 	public void setSubscripto(Subscripto s){
 		this.subscripto = s;
@@ -214,6 +226,7 @@ public class Universidad {
 	public void AgregarMateria(ArrayList<String> eparam) throws UniversidadException{
 		Materia m = new Materia(eparam.get(1), eparam.get(3));
 		m.AgregarMateria(this, eparam);
+		NotificarMateriaNueva(m);
 	}
 	
 	
@@ -221,6 +234,8 @@ public class Universidad {
 	public void AgregarAlumno(ArrayList<String> eparam){
 		Alumno a = new Alumno(eparam.get(1), eparam.get(2), eparam.get(3));
 		this.ealumno.add(a);
+		NotificarAlumnoNuevo(a);
+
 	}
 	
 	//Obtener un Alumno a partir de su Matricula
