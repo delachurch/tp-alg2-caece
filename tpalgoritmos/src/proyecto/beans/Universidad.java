@@ -161,7 +161,7 @@ public class Universidad {
 		}
 		
 		for (Alumno a: this.getEalumno()){
-			if (a.getMatricula() == alumno.getMatricula()) {
+			if (a.getMatricula().equals(alumno.getMatricula())) {
 				 for (Materia m : emateria){
 					 
 					 for (CarreraMateria cm : this.getEcarreramateria()){
@@ -231,7 +231,7 @@ public class Universidad {
 				aux = a;
 			}
 		}
-		if (aux.getMatricula() == null) throw new UniversidadException("Alumno Inexistente"); 
+		if (aux.getMatricula().equals(null)) throw new UniversidadException("Alumno Inexistente"); 
 		else return aux;
 	}
 
@@ -243,7 +243,7 @@ public class Universidad {
 				aux = c;
 			}
 		}
-		if (aux.getNombre() == null) throw new UniversidadException("Carrera Inexistente"); 
+		if (aux.getNombre().equals(null)) throw new UniversidadException("Carrera Inexistente"); 
 		else return aux;
 	}
 	
@@ -255,7 +255,7 @@ public class Universidad {
 				return aux = m;
 			}
 		}
-		if (aux.getNombre() == null) throw new UniversidadException("Materia Inexistente"); 
+		if (aux.getNombre().equals(null)) throw new UniversidadException("Materia Inexistente"); 
 		else return aux;
 	}
 	
