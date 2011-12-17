@@ -16,19 +16,19 @@ public class MainAction {
 	 */
 	public static void main(String[] args) throws UniversidadException {
 		//mover todo el main a la clase UI
-		System.out.println("Ingrese nombre Universidad");
+		/*System.out.println("Ingrese nombre Universidad");
 		ConsoleReader MyReader = new ConsoleReader();
 		ArrayList<String> res = new ArrayList<String>();
 		res = MyReader.getInput();
 		
-		System.out.println(res);
+		System.out.println(res);*/
 		
 		UI myUI = new UI(res.toString());
+     myUI.EjecutarUI();
 		
 		
 		
-		
-		while (res.get(0) != "666") {
+		/*while (res.get(0) != "666") {
 			
 			System.out.println("Ingrese Opcion: ALTA - ACCION ");
 			res = MyReader.getInput();
@@ -48,7 +48,7 @@ public class MainAction {
 			}
 	
 			
-		}
+		}*/
 		
 
 	}
