@@ -87,7 +87,7 @@ public class Alumno {
 		if (!universidad.getCuatrimestre().isIsactual()){
 			boolean carreracompleta = true;
 			for (Alumno a: universidad.getEalumno()){
-				if (a.getMatricula() == this.getMatricula()){
+				if (a.getMatricula().equals(this.getMatricula())){
 					for (HistoriaAcademica ha : this.getEhistoriaacademica()){
 						if (!ha.isIsfinal()) {
 							carreracompleta = false;
