@@ -15,7 +15,7 @@ public class MainAction {
 	 * @throws UniversidadException 
 	 */
 	public static void main(String[] args) throws UniversidadException {
-		
+		//mover todo el main a la clase UI
 		System.out.println("Ingrese nombre Universidad");
 		ConsoleReader MyReader = new ConsoleReader();
 		ArrayList<String> res = new ArrayList<String>();
