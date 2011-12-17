@@ -14,8 +14,8 @@ public class Promocion {
 	public static Promocion getPromocionbyName(String promocion) {
        
        if (promocion.equals("PAR) return new PromocionPar();
-       if (promocion.equals("IMPAR) return new PromocionImpar();
-       if (promocion.equals("NORMAL) return new PromocionNormal();
+       else if (promocion.equals("IMPAR) return new PromocionImpar();
+       else if (promocion.equals("NORMAL) return new PromocionNormal();
        else return null;
        
 	 		/*switch (promocion) {
