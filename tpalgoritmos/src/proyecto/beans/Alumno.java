@@ -89,7 +89,7 @@ public class Alumno {
 			for (Alumno a: universidad.getEalumno()){
 				if (a.getMatricula().equals(this.getMatricula())){
 					for (HistoriaAcademica ha : this.getEhistoriaacademica()){
-						if (!ha.isIsfinal()) {
+						if (!ha.isIsfinal() && ha.getCarreramateria().getCarrera().equals(carrera)) {
 							carreracompleta = false;
 						}
 					}
@@ -112,7 +112,7 @@ public class Alumno {
 	
 	public void MarcarInscripcionMateria (Materia materia){
 		for (HistoriaAcademica ha : this.getEhistoriaacademica())
-			if (materia.getNombre().equals(ha.getCarreramateria().getCarrera().getNombre())){
+			if (materia.getNombre().equals(ha.getCarreramateria().getMateria().getNombre())){
 				ha.setIsinscripto(true);
 			}
 	}

@@ -5,7 +5,6 @@ public class ActaFinal{
 
         //Variables Privadas
         private Alumno alumno;
-        private Carrera carrera;
         private Materia materia;
         private int nota;
                 
@@ -20,16 +19,6 @@ public class ActaFinal{
                 this.alumno = alumno;
         }
         
-        //Obtener la carrera
-        public Carrera getcarrera() {
-                return carrera;
-        }
-        
-        //Asignar la carrera;
-        public void setcarrera(Carrera carrera) {
-                this.carrera = carrera;
-        }
-
         //Obtener la materia
         public Materia getmateria() {
                 return materia;
@@ -48,11 +37,10 @@ public class ActaFinal{
 			this.nota = nota;
 		}
 
-		public ActaFinal(Alumno alumno, Carrera carrera, Materia materia,
+		public ActaFinal(Alumno alumno, Materia materia,
 				int nota) {
 			super();
 			this.alumno = alumno;
-			this.carrera = carrera;
 			this.materia = materia;
 			this.nota = nota;
 		}
