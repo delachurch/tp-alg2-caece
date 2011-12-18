@@ -13,7 +13,6 @@ public class Universidad {
 	private List<CarreraMateria> ecarreramateria;
 	private List<Alumno> ealumno;
 	private Cuatrimestre cuatrimestre;
-	private List<List<ActaFinal>> eactafinal;
 	private List<Promocion> ecriterios;
 	private Subscripto subscripto;
 
@@ -91,27 +90,27 @@ public class Universidad {
 	}
 	
 	//Solicitar el Titulo de un Alumno perteneciente a una Carrera 
-	public boolean SolicitudTitulo(Alumno alumno, Carrera carrera){
-		return alumno.SolicitudTitulo(this,carrera);
+	public void SolicitudTitulo(Alumno alumno, Carrera carrera){
+		NotificarSolicitudTitulo(alumno.SolicitudTitulo(this,carrera));
 	}
 	
-	//Agregar un Listado de Actas de final 
-	public void AgregarActaFinal(List<ActaFinal> eactafinal){
-		this.eactafinal.add(eactafinal);
-	}
-
-    //Agregar una Materia nueva a una Carrera Existente
-    public void IngresarActaFinal(String materia, String carrera, int nota){
+ 
+    public void IngresarActaFinal(String materia, String matricula, int nota){
     	List<ActaFinal> lstacta = new ArrayList<ActaFinal>();
 	    for(Alumno a : this.getEalumno()){
-	    	for(HistoriaAcademica ha : a.getEhistoriaacademica()){
-	    		if(ha.getCarreramateria().getCarrera().equals(carrera) && ha.getCarreramateria().getMateria().equals(materia) && ha.isIscursada()){
-	    			ActaFinal af = new ActaFinal(a, ha.getCarreramateria().getCarrera(), ha.getCarreramateria().getMateria() , nota);
-					lstacta.add(af);
+	    	if (a.getMatricula().equals(matricula)){
+		    	for(HistoriaAcademica ha : a.getEhistoriaacademica()){
+		    		if(ha.getCarreramateria().getMateria().getNombre().equals(materia) && ha.isIscursada()){
+		    			ActaFinal af = new ActaFinal(a, ha.getCarreramateria().getMateria() , nota);
+						lstacta.add(af);
+						if (nota > 4) {
+							ha.setIsfinal(true);
+							ha.setNota(nota);
+						}
+					}
 				}
-			}	
+	    	}
 		}
-		this.AgregarActaFinal(lstacta);	
     }
 
 	
@@ -216,6 +215,12 @@ public class Universidad {
 			this.subscripto.onMateriaNueva(m);
 		}
 	}
+	
+	private void NotificarSolicitudTitulo(boolean titulo){
+		if (this.subscripto != null) {
+			this.subscripto.onSolicitudTitulo(titulo);
+		}
+	}
 
 	
 	public void setSubscripto(Subscripto s){
@@ -224,6 +229,10 @@ public class Universidad {
 
 	//Agregar una Materia nueva a una Carrera Existente
 	public void AgregarMateria(ArrayList<String> eparam) throws UniversidadException{
+		
+		try {Promocion.getPromocionbyName( eparam.get(3));}
+		catch (Exception e) {throw new UniversidadException("Regimen de Promocion Inexistente");}
+		
 		Materia m = new Materia(eparam.get(1), eparam.get(3));
 		m.AgregarMateria(this, eparam);
 		NotificarMateriaNueva(m);
